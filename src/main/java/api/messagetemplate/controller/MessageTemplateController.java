@@ -2,6 +2,7 @@ package api.messagetemplate.controller;
 
 import api.messagetemplate.model.MessageTemplate;
 import api.messagetemplate.model.MessageTemplateWrapper;
+import api.messagetemplate.model.ResponseTemplate;
 import api.messagetemplate.service.MessageTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,19 +31,22 @@ public class MessageTemplateController {
         return messageTemplateWrapper;
     }
 
-    @GetMapping("/api/template/{templateId}")
+    @GetMapping("/api/templates/{templateId}")
     public MessageTemplate getMessageTemplate(@PathVariable String templateId) {
         MessageTemplate messageTemplate = messageTemplateService.getMessageTemplate(templateId);
 
         return messageTemplate;
     }
 
-    @GetMapping("/api/template/{templateId}/compose")
-    public MessageTemplate getMessageTemplate(@PathVariable String templateId, @RequestParam Map<String, String> queryParams) {
+    @GetMapping("/api/templates/{templateId}/compose")
+    public ResponseTemplate getMessageTemplate(@PathVariable String templateId, @RequestParam Map<String, String> queryParams) {
 
         MessageTemplate messageTemplate = messageTemplateService.getMessageTemplate(templateId, queryParams);
 
-        return messageTemplate;
+        ResponseTemplate responseTemplate = new ResponseTemplate();
+        responseTemplate.setMessageText(messageTemplate.getTemplateText());
+
+        return responseTemplate;
     }
 
     @PostMapping("/api/templates")
