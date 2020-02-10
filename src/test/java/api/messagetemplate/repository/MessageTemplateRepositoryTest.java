@@ -51,6 +51,8 @@ public class MessageTemplateRepositoryTest {
         Map<String, String> queryParams = new HashMap<>();
         queryParams.put("name", "John");
         queryParams.put("place", "California");
+        queryParams.put("pla", "California");
+        queryParams.put("places", "California");
 
         MessageTemplate resultingTemplate1 = messageTemplateRepository.getMessageTemplateWithQueryParams("1", queryParams);
 

@@ -1,6 +1,7 @@
 package api.messagetemplate.repository;
 
 import api.messagetemplate.model.MessageTemplate;
+import api.messagetemplate.util.StrUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -50,8 +51,8 @@ public class MessageTemplateRepository {
             String templateText = messageMap.get(templateId);
 
             for(Map.Entry<String, String> entry : queryParams.entrySet()) {
-                if(templateText.contains("$" + entry.getKey())) {
-                    templateText = templateText.replaceAll(Pattern.quote("$" + entry.getKey()), entry.getValue());
+                if(StrUtils.isTokenWordPresent(templateText, entry.getKey())) {
+                    templateText = templateText.replaceAll(StrUtils.getEscapedTokenWord(entry.getKey()), entry.getValue());
                 }
             }
             logger.debug(templateText);
