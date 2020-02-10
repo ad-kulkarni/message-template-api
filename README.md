@@ -1,10 +1,10 @@
 # About
 This project is a RESTful API application built on Java SpringBoot that allows users to perform operations on message templates.
 Following operations are supported by the API,
-- Create message template
-- Get all message templates
-- Get message template by id
-- Get message template by query params
+- Create message template (POST /api/templates)
+- Get all message templates (GET /api/templates)
+- Get message template by id (GET /api/templates/{templateId})
+- Get message template by query params (GET /api/templates/{templateId}/compose?{key1=value1&key2=value2})
 
 # Technologies
 - Java 8
@@ -25,4 +25,4 @@ Following operations are supported by the API,
   <br/>
 
 # Note
-  Don't recommend using Swagger UI for urls with query params because of an existing issue with the springfox library (https://github.com/springfox/springfox/issues/2338) and seems like it is still unresolved.
+  For urls with query params the use of Swagger UI is not recommended because of an existing issue with the springfox library (https://github.com/springfox/springfox/issues/2338) and seems like it is still unresolved.
