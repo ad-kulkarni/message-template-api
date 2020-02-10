@@ -23,7 +23,7 @@ public class MessageTemplateService {
     }
 
     public MessageTemplate getMessageTemplate(String templateId, Map<String, String> queryParams) {
-        return messageTemplateRepository.getMessageTemplate(templateId, queryParams);
+        return messageTemplateRepository.getMessageTemplateWithQueryParams(templateId, queryParams);
     }
 
     public void saveMessageTemplate(MessageTemplate messageTemplate) {

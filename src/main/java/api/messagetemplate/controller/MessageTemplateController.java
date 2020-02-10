@@ -51,4 +51,8 @@ public class MessageTemplateController {
 
         return "MessageTemplate created successfully";
     }
+
+    public void setMessageTemplateService(MessageTemplateService messageTemplateService) {
+        this.messageTemplateService = messageTemplateService;
+    }
 }

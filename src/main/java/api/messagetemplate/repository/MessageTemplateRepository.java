@@ -45,7 +45,7 @@ public class MessageTemplateRepository {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "MessageTemplate with id " + templateId + " not found!");
     }
 
-    public MessageTemplate getMessageTemplate(String templateId, Map<String, String> queryParams) {
+    public MessageTemplate getMessageTemplateWithQueryParams(String templateId, Map<String, String> queryParams) {
         if(messageMap.containsKey(templateId)) {
             String templateText = messageMap.get(templateId);
 
