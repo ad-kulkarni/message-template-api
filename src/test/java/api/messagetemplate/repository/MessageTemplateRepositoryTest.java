@@ -1,4 +1,4 @@
-package api.messagetemplate;
+package api.messagetemplate.repository;
 
 import api.messagetemplate.model.MessageTemplate;
 import api.messagetemplate.repository.MessageTemplateRepository;
@@ -40,8 +40,13 @@ public class MessageTemplateRepositoryTest {
         messageTemplate2.setTemplateId("2");
         messageTemplate2.setTemplateText("Hello, I live in $place!");
 
+        MessageTemplate messageTemplate3 = new MessageTemplate();
+        messageTemplate3.setTemplateId("3");
+        messageTemplate3.setTemplateText("Hello, $name, $place is very beautiful!");
+
         messageTemplateRepository.saveMessageTemplate(messageTemplate1);
         messageTemplateRepository.saveMessageTemplate(messageTemplate2);
+        messageTemplateRepository.saveMessageTemplate(messageTemplate3);
 
         Map<String, String> queryParams = new HashMap<>();
         queryParams.put("name", "John");
@@ -56,5 +61,10 @@ public class MessageTemplateRepositoryTest {
 
         Assert.assertEquals("2", resultingTemplate2.getTemplateId());
         Assert.assertEquals("Hello, I live in California!", resultingTemplate2.getTemplateText());
+
+        MessageTemplate resultingTemplate3 = messageTemplateRepository.getMessageTemplateWithQueryParams("3", queryParams);
+
+        Assert.assertEquals("3", resultingTemplate3.getTemplateId());
+        Assert.assertEquals("Hello, John, California is very beautiful!", resultingTemplate3.getTemplateText());
     }
 }
